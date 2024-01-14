@@ -1,14 +1,14 @@
 const carCanvas = document.getElementById('carCanvas');
 carCanvas.width = 200;
 const networkCanvas = document.getElementById('networkCanvas');
-networkCanvas.width = 300;
+networkCanvas.width = 600;
 
 const carCtx = carCanvas.getContext('2d');
 const networkCtx = networkCanvas.getContext('2d');
 
 const road = new Road(carCanvas.width / 2, carCanvas.width * 0.9);
 
-const N = 1;
+const N = 1500;
 const cars = generateCars(N);
 
 let bestCar = cars[0];
@@ -16,12 +16,48 @@ if (localStorage.getItem('bestBrain')) {
 	for (let i = 0; i < cars.length; i++) {
 		cars[i].brain = JSON.parse(localStorage.getItem('bestBrain'));
 		if (i != 0) {
-			NeuralNetwork.mutate(cars[i].brain, 0.1);
+			NeuralNetwork.mutate(cars[i].brain, 0.4);
 		}
 	}
 }
 
-const traffic = [
+const track_1 = [	
+	new Car(road.getLaneCenter(1), -100, 30, 50, 'DUMMY', 2),
+	new Car(road.getLaneCenter(0), -300, 30, 50, 'DUMMY', 2),
+	new Car(road.getLaneCenter(2), -300, 30, 50, 'DUMMY', 2),
+	new Car(road.getLaneCenter(1), -500, 30, 50, 'DUMMY', 2),
+	new Car(road.getLaneCenter(0), -700, 30, 50, 'DUMMY', 2),
+	new Car(road.getLaneCenter(2), -700, 30, 50, 'DUMMY', 2),
+	new Car(road.getLaneCenter(1), -900, 30, 50, 'DUMMY', 2),
+	new Car(road.getLaneCenter(0), -1300, 30, 50, 'DUMMY', 2),
+	new Car(road.getLaneCenter(1), -1300, 30, 50, 'DUMMY', 2),
+	new Car(road.getLaneCenter(2), -1300, 30, 50, 'DUMMY', 2),
+];
+
+const track_2 = [	
+	new Car(road.getLaneCenter(1), -100, 30, 50, 'DUMMY', 2),
+	new Car(road.getLaneCenter(0), -300, 30, 50, 'DUMMY', 2),
+	new Car(road.getLaneCenter(2), -300, 30, 50, 'DUMMY', 2),
+	new Car(road.getLaneCenter(1), -500, 30, 50, 'DUMMY', 2),
+	new Car(road.getLaneCenter(0), -700, 30, 50, 'DUMMY', 2),
+	new Car(road.getLaneCenter(2), -700, 30, 50, 'DUMMY', 2),
+	new Car(road.getLaneCenter(0), -800, 30, 50, 'DUMMY', 2),
+	new Car(road.getLaneCenter(2), -800, 30, 50, 'DUMMY', 2),
+	new Car(road.getLaneCenter(0), -900, 30, 50, 'DUMMY', 2),
+	new Car(road.getLaneCenter(2), -900, 30, 50, 'DUMMY', 2),
+	new Car(road.getLaneCenter(1), -1100, 30, 50, 'DUMMY', 2),
+	new Car(road.getLaneCenter(0), -1300, 30, 50, 'DUMMY', 2),
+	new Car(road.getLaneCenter(2), -1300, 30, 50, 'DUMMY', 2),
+	new Car(road.getLaneCenter(0), -1400, 30, 50, 'DUMMY', 2),
+	new Car(road.getLaneCenter(2), -1400, 30, 50, 'DUMMY', 2),
+	new Car(road.getLaneCenter(0), -1500, 30, 50, 'DUMMY', 2),
+	new Car(road.getLaneCenter(2), -1500, 30, 50, 'DUMMY', 2),
+	new Car(road.getLaneCenter(0), -1700, 30, 50, 'DUMMY', 2),
+	new Car(road.getLaneCenter(1), -1700, 30, 50, 'DUMMY', 2),
+	new Car(road.getLaneCenter(2), -1700, 30, 50, 'DUMMY', 2),
+];
+
+const track_3 = [
 	new Car(road.getLaneCenter(1), -100, 30, 50, 'DUMMY', 2),
 	new Car(road.getLaneCenter(0), -300, 30, 50, 'DUMMY', 2),
 	new Car(road.getLaneCenter(2), -300, 30, 50, 'DUMMY', 2),
@@ -61,6 +97,8 @@ const traffic = [
 	new Car(road.getLaneCenter(2), -4700, 30, 50, 'DUMMY', 2),
 	new Car(road.getLaneCenter(1), -4800, 30, 50, 'DUMMY', 2),
 ];
+
+const traffic = track_3;
 
 animate();
 
